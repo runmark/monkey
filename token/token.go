@@ -16,12 +16,12 @@ const (
 	PLUS   = "+"
 
 	// identifier + literal
-	IDNET = "IDENT"
+	IDENT = "IDENT"
 	INT   = "INT"
 
 	// keyword
-	LET  = "LET"
-	FUNC = "FUNC"
+	LET      = "LET"
+	FUNCTION = "FUNC"
 
 	// seperator
 	COMMA     = ","
@@ -32,3 +32,15 @@ const (
 	LBRACE = "{"
 	RBRACE = "}"
 )
+
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
